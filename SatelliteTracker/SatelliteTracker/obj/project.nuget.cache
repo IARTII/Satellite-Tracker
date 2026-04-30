@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "RJ9O9dRmwLk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ART1\\source\\repos\\SatelliteTracker\\SatelliteTracker\\SatelliteTracker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ART1\\.nuget\\packages\\microsoft.web.webview2\\1.0.3912.50\\microsoft.web.webview2.1.0.3912.50.nupkg.sha512"
+  ],
+  "logs": []
+}
