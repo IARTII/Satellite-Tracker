@@ -2,47 +2,170 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Map</title>
+    <title>Satellite Map</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script src="https://unpkg.com/@joergdietrich/leaflet.terminator"></script>
 
     <style>
         html, body, #map {
             height: 100%;
             margin: 0;
+            background: #000;
+        }
+
+        .leaflet-container {
+            background: #000;
+        }
+
+        /* =========================
+           SATELLITE LABEL (FIXED)
+           ========================= */
+        .sat-label {
+            color: black !important;
+            font-size: 12px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            padding: 2px 6px;
+            text-shadow: none !important;
         }
     </style>
 </head>
+
 <body>
 
     <div id="map"></div>
 
     <script>
-        const map = L.map('map').setView([20, 0], 2);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+        const map = L.map('map', {
+            worldCopyJump: false
+        }).setView([20, 0], 2);
+
+        map.setMaxBounds([
+            [-85, -180],
+            [85, 180]
+        ]);
+
+        map.options.maxBoundsViscosity = 1.0;
+
+        L.tileLayer(
+            'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+            {
+                attribution: '&copy; OpenStreetMap contributors',
+                maxZoom: 19,
+                minZoom: 3,
+                noWrap: true
+            }
+        ).addTo(map);
+
+        const terminator = L.terminator({
+            color: '#000',
+            weight: 1,
+            opacity: 0.5,
+            fillColor: '#000',
+            fillOpacity: 0.35
         }).addTo(map);
 
-        // Хранилище линий
+        setInterval(() => {
+            terminator.setTime(new Date());
+        }, 60000);
+
         let polylines = [];
+        let satelliteMarkers = {};
 
-        // 👉 функция для отрисовки траектории
-        function drawTrack(points, color) {
+        window.drawTrack = function (points, color) {
 
-        // удалить старые линии
-        polylines.forEach(p => map.removeLayer(p));
-        polylines = [];
+            if (!points || points.length === 0)
+                return;
 
-        let poly = L.polyline(points, {
-        color: color,
-        weight: 3
-        }).addTo(map);
+            let segment = [];
 
-        polylines.push(poly);
-        }
+            for (let i = 0; i < points.length; i++) {
 
+                let lat = points[i][0];
+                let lon = points[i][1];
+
+                if (lat === null || lon === null ||
+                    isNaN(lat) || isNaN(lon))
+                    continue;
+
+                if (i > 0) {
+
+                    let prevLon = points[i - 1][1];
+
+                    if (Math.abs(lon - prevLon) > 180) {
+
+                        if (segment.length > 1) {
+
+                            let poly = L.polyline(segment, {
+                                color: color || 'lime',
+                                weight: 3
+                            }).addTo(map);
+
+                            polylines.push(poly);
+                        }
+
+                        segment = [];
+                    }
+                }
+
+                segment.push([lat, lon]);
+            }
+
+            if (segment.length > 1) {
+
+                let poly = L.polyline(segment, {
+                    color: color || 'lime',
+                    weight: 3
+                }).addTo(map);
+
+                polylines.push(poly);
+            }
+        };
+
+        window.updateSatellite = function (sat) {
+
+            if (!sat)
+                return;
+
+            let name = sat.name;
+            let lat = sat.lat;
+            let lon = sat.lon;
+            let color = sat.color;
+
+            if (isNaN(lat) || isNaN(lon))
+                return;
+
+            if (!satelliteMarkers[name]) {
+
+                let marker = L.marker([lat, lon], {
+                    icon: L.divIcon({
+                        className: '',
+                        html: `<div style="font-size:24px; filter: drop-shadow(0 0 4px ${color});">🛰️</div>`,
+                        iconSize: [24, 24]
+                    })
+                }).addTo(map);
+
+                marker.bindTooltip(name, {
+                    permanent: true,
+                    direction: 'top',
+                    className: 'sat-label'
+                });
+
+                satelliteMarkers[name] = marker;
+
+            } else {
+
+                satelliteMarkers[name].setLatLng([lat, lon]);
+            }
+        };
 
     </script>
 
