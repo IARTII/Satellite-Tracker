@@ -83,3 +83,5 @@ C:\Users\a.m.mahlaev\source\repos\Satellite-Tracker\SatelliteTracker\SatelliteTr
 C:\Users\a.m.mahlaev\source\repos\Satellite-Tracker\SatelliteTracker\SatelliteTracker\bin\Debug\net10.0-windows\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\a.m.mahlaev\source\repos\Satellite-Tracker\SatelliteTracker\SatelliteTracker\bin\Debug\net10.0-windows\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\a.m.mahlaev\source\repos\Satellite-Tracker\SatelliteTracker\SatelliteTracker\bin\Debug\net10.0-windows\SGP.NET.dll
+C:\Users\a.m.mahlaev\source\repos\Satellite-Tracker\SatelliteTracker\SatelliteTracker\obj\Debug\net10.0-windows\ChangeDialog.g.cs
+C:\Users\a.m.mahlaev\source\repos\Satellite-Tracker\SatelliteTracker\SatelliteTracker\obj\Debug\net10.0-windows\ChangeDialog.baml

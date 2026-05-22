@@ -86,5 +86,22 @@ namespace SatelliteTracker
 
             return result;
         }
+
+        public static void DeleteTLEfromFile(string destenation, string TLEname)
+        {
+            List<string> lines = File.ReadAllLines(destenation).ToList();
+
+            for(int i  = 0; i < lines.Count; i++)
+            {
+                if (lines[i] == TLEname)
+                {
+                    for(int j = i; j < i + 4; j++)
+                    {
+                        lines.RemoveAt(i);
+                    }
+                }
+            }
+            File.WriteAllLines(destenation, lines.ToArray());
+        }
     }
 }

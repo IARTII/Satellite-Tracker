@@ -167,6 +167,43 @@
             }
         };
 
+        window.removeSatellite = function (name) {
+
+            // удалить marker
+            if (satelliteMarkers[name]) {
+
+                map.removeLayer(satelliteMarkers[name]);
+
+                delete satelliteMarkers[name];
+            }
+
+            // удалить orbit
+            if (satelliteTracks[name]) {
+
+                satelliteTracks[name].forEach(track => {
+                    map.removeLayer(track);
+                });
+
+                delete satelliteTracks[name];
+            }
+        };
+
+        window.clearMap = function () {
+
+            // Удаляем все линии
+            polylines.forEach(poly => {
+                map.removeLayer(poly);
+            });
+
+            polylines = [];
+
+            // Удаляем все маркеры спутников
+            Object.keys(satelliteMarkers).forEach(name => {
+                map.removeLayer(satelliteMarkers[name]);
+            });
+
+            satelliteMarkers = {};
+        };
     </script>
 
 </body>

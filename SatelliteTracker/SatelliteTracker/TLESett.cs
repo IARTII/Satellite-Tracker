@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SatelliteTracker
 {
-    class TLESett
+    public class TLESett
     {
         public string TLEname = "";
         public string TLEcolor = "";

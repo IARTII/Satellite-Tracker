@@ -351,8 +351,6 @@ namespace SatelliteTracker
                 new Uri(path);
         }
 
-        private async void Button_Click(object sender,RoutedEventArgs e) { }
-
         // =========================
         // VISUAL PROCESSOR
         // =========================
@@ -382,7 +380,43 @@ namespace SatelliteTracker
 
         private void ChangeButton_Click(object sender, RoutedEventArgs e)
         {
+            int ind = TLElist_listBox.SelectedIndex;
+            Satellite newSat = (Satellite)TLElist_listBox.Items[ind];
+            var tleData = TLEFile.ReadTle(destenation);
 
+
+            ChangeDialog CD = new ChangeDialog(newSat.Name, $"{tleData[ind].Color.R}, {tleData[ind].Color.G}, {tleData[ind].Color.B}", tleData[ind].Line1, tleData[ind].Line2);
+            bool? result = CD.ShowDialog();
+            if (result == true)
+            {
+                satelliteTimer.Stop();
+
+                MessageBox.Show("ok");
+            }
+
+            satelliteTimer.Start();
+        }
+
+        async private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            int ind = TLElist_listBox.SelectedIndex;
+            Satellite newSat = (Satellite)TLElist_listBox.Items[ind];
+            satelliteTimer.Stop();
+            TLEFile.DeleteTLEfromFile(destenation, newSat.Name);
+
+            await MapView.CoreWebView2.ExecuteScriptAsync(
+                $"clearMap();");
+
+            Satellites.Remove(newSat);
+            for(int i = 0; i <  activeSatellites.Count; i++)
+            {
+                if (activeSatellites[i].Name == newSat.Name)
+                {
+                    activeSatellites.RemoveAt(i);
+                }
+            }
+            Satellites = TLEFile.Read(destenation);
+            MainWindow_Loaded(sender, e);
         }
     }
 }

@@ -94,7 +94,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Border Background="#2A2A2A"
+                <Border x:Name="SattList" Background="#2A2A2A"
                         CornerRadius="20"
                         Margin="0,0,0,10">
 
@@ -162,7 +162,7 @@
                             Height="45"
                             Background="#F44336"
                             Foreground="White"
-                            FontWeight="Bold"/>
+                            FontWeight="Bold" Click="DeleteButton_Click"/>
 
                 </StackPanel>
             </Grid>
