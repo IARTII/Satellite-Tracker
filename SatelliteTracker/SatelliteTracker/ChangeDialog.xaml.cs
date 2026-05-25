@@ -50,7 +50,7 @@ namespace SatelliteTracker
                     (Color)ColorPicker.SelectedColor;
             }
 
-            tleSett.TLEcolor = $"{selectedColor.R}, {selectedColor.G}, {selectedColor.B}"; ;
+            tleSett.TLEcolor = $"{selectedColor.R}, {selectedColor.G}, {selectedColor.B}"; 
             tleSett.TLE1 = Tle1TB.Text;
             tleSett.TLE2 = Tle2TB.Text;
 

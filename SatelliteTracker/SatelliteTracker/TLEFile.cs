@@ -103,5 +103,22 @@ namespace SatelliteTracker
             }
             File.WriteAllLines(destenation, lines.ToArray());
         }
+
+        public static void ChangeTLEinFile(string destenation, string TLEname, TLESett newTLE)
+        {
+            List<string> lines = File.ReadAllLines(destenation).ToList();
+            for (int i = 0; i < lines.Count; i++)
+            {
+                if(lines[i] == TLEname)
+                {
+                    lines[i] = newTLE.TLEname;
+                    lines[i + 1] = newTLE.TLEcolor;
+                    lines[i + 2] = newTLE.TLE1;
+                    lines[i + 3] = newTLE.TLE2;
+                } 
+            }
+            File.WriteAllText(destenation, String.Empty);
+            File.WriteAllLines(destenation, lines);
+        }
     }
 }

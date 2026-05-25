@@ -85,7 +85,7 @@
             Background="#FF7DFF62"
             Padding="5" Margin="271,243,0,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100">
 
-            <Button x:Name="OKbutton" Margin="-6,-6,-6,0" Background="#00DDDDDD" Content="ОК" FontFamily="Impact" FontSize="18" Foreground="White" Height="28" VerticalAlignment="Top" Click="OKbutton_Click"/>
+            <Button x:Name="OKbutton" Margin="-6,-6,-6,-6" Background="#00DDDDDD" Content="ОК" FontFamily="Impact" FontSize="18" Foreground="White" Click="OKbutton_Click"/>
         </Border>
     </Grid>
 </Window>

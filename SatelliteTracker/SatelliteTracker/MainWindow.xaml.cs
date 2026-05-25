@@ -2,12 +2,19 @@
 using SGPdotNET.Propagation;
 using SGPdotNET.TLE;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Xceed.Wpf.Toolkit;
+using MessageBox = System.Windows.MessageBox;
+using WindowState = System.Windows.WindowState;
+using Color = System.Windows.Media.Color;
+using Brushes = System.Windows.Media.Brush;
+using Brush = System.Drawing.Brush;
 
 namespace SatelliteTracker
 {
@@ -33,7 +40,7 @@ namespace SatelliteTracker
         {
             public string Name { get; set; }
 
-            public Brush TrackColor { get; set; }
+            public System.Windows.Media.Brush TrackColor { get; set; }
         }
 
         // runtime object
@@ -90,18 +97,15 @@ namespace SatelliteTracker
 
             try
             {
-                Brush trackColor = Brushes.Gray;
+                System.Windows.Media.Brush trackColor;
+                System.Windows.Media.Color selectedColor = Colors.Coral;
 
-                System.Windows.Media.Color selectedColor =
-                    Colors.Coral;
+                trackColor = new SolidColorBrush(selectedColor);
 
                 if (MyColorPicker.SelectedColor != null)
                 {
-                    selectedColor =
-                        (Color)MyColorPicker.SelectedColor;
-
-                    trackColor =
-                        new SolidColorBrush(selectedColor);
+                    selectedColor = (System.Windows.Media.Color)MyColorPicker.SelectedColor;
+                    trackColor = new SolidColorBrush(selectedColor);
                 }
 
                 tLESett.TLEname =
@@ -391,7 +395,31 @@ namespace SatelliteTracker
             {
                 satelliteTimer.Stop();
 
-                MessageBox.Show("ok");
+                TLESett ts = CD.tleSett;
+
+                for(int i = 0; i < TLElist_listBox.Items.Count; i++)
+                {
+                    Satellite forSatt = (Satellite)TLElist_listBox.Items[i];
+
+                    if (forSatt.Name == newSat.Name)
+                    {
+                        string oldname = Satellites[i].Name;
+                        Satellites[i].Name = ts.TLEname;
+                        string[] colorParts = ts.TLEcolor.Split(',');
+
+                        if (colorParts.Length == 3 &&
+                            byte.TryParse(colorParts[0].Trim(), out byte r) &&
+                            byte.TryParse(colorParts[1].Trim(), out byte g) &&
+                            byte.TryParse(colorParts[2].Trim(), out byte b))
+                        {
+                            System.Windows.Media.Color selectedColor = Color.FromRgb(r, g, b);
+                            Satellites[i].TrackColor = new SolidColorBrush(selectedColor);
+
+                            TLEFile.ChangeTLEinFile(destenation, oldname, ts);
+                        }
+                    }
+                }
+                
             }
 
             satelliteTimer.Start();

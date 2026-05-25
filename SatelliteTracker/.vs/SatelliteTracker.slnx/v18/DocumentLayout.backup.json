@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D0BB3FC3-F1C2-2180-E346-63C639E1EEF4}|SatelliteTracker\\SatelliteTracker.csproj|c:\\users\\a.m.mahlaev\\source\\repos\\satellite-tracker\\satellitetracker\\satellitetracker\\tlefile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0BB3FC3-F1C2-2180-E346-63C639E1EEF4}|SatelliteTracker\\SatelliteTracker.csproj|solutionrelative:satellitetracker\\tlefile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D0BB3FC3-F1C2-2180-E346-63C639E1EEF4}|SatelliteTracker\\SatelliteTracker.csproj|c:\\users\\a.m.mahlaev\\source\\repos\\satellite-tracker\\satellitetracker\\satellitetracker\\changedialog.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{D0BB3FC3-F1C2-2180-E346-63C639E1EEF4}|SatelliteTracker\\SatelliteTracker.csproj|solutionrelative:satellitetracker\\changedialog.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D0BB3FC3-F1C2-2180-E346-63C639E1EEF4}|SatelliteTracker\\SatelliteTracker.csproj|c:\\users\\a.m.mahlaev\\source\\repos\\satellite-tracker\\satellitetracker\\satellitetracker\\changedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{D0BB3FC3-F1C2-2180-E346-63C639E1EEF4}|SatelliteTracker\\SatelliteTracker.csproj|solutionrelative:satellitetracker\\changedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BB3FC3-F1C2-2180-E346-63C639E1EEF4}|SatelliteTracker\\SatelliteTracker.csproj|c:\\users\\a.m.mahlaev\\source\\repos\\satellite-tracker\\satellitetracker\\satellitetracker\\tlefile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0BB3FC3-F1C2-2180-E346-63C639E1EEF4}|SatelliteTracker\\SatelliteTracker.csproj|solutionrelative:satellitetracker\\tlefile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0BB3FC3-F1C2-2180-E346-63C639E1EEF4}|SatelliteTracker\\SatelliteTracker.csproj|c:\\users\\a.m.mahlaev\\source\\repos\\satellite-tracker\\satellitetracker\\satellitetracker\\tlesett.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,11 +38,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "ChangeDialog.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\ChangeDialog.xaml.cs",
+              "RelativeDocumentMoniker": "SatelliteTracker\\ChangeDialog.xaml.cs",
+              "ToolTip": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\ChangeDialog.xaml.cs",
+              "RelativeToolTip": "SatelliteTracker\\ChangeDialog.xaml.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwCoAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T06:16:56.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "SatelliteTracker\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\MainWindow.xaml.cs",
+              "RelativeToolTip": "SatelliteTracker\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAH8BAAAAtaFinCcowJIBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T09:05:59.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ChangeDialog.xaml",
               "DocumentMoniker": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\ChangeDialog.xaml",
               "RelativeDocumentMoniker": "SatelliteTracker\\ChangeDialog.xaml",
@@ -54,20 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ChangeDialog.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\ChangeDialog.xaml.cs",
-              "RelativeDocumentMoniker": "SatelliteTracker\\ChangeDialog.xaml.cs",
-              "ToolTip": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\ChangeDialog.xaml.cs",
-              "RelativeToolTip": "SatelliteTracker\\ChangeDialog.xaml.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAowBwAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T08:14:35.645Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\MainWindow.xaml",
               "RelativeDocumentMoniker": "SatelliteTracker\\MainWindow.xaml",
@@ -75,19 +88,6 @@
               "RelativeToolTip": "SatelliteTracker\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-05-14T09:05:45.437Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "SatelliteTracker\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\MainWindow.xaml.cs",
-              "RelativeToolTip": "SatelliteTracker\\MainWindow.xaml.cs",
-              "ViewState": "AgIAACgBAAAAAAAAAAD4vzoBAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T09:05:59.437Z",
               "EditorCaption": ""
             },
             {
@@ -105,13 +105,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "TLEFile.cs",
               "DocumentMoniker": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\TLEFile.cs",
               "RelativeDocumentMoniker": "SatelliteTracker\\TLEFile.cs",
               "ToolTip": "C:\\Users\\a.m.mahlaev\\source\\repos\\Satellite-Tracker\\SatelliteTracker\\SatelliteTracker\\TLEFile.cs",
               "RelativeToolTip": "SatelliteTracker\\TLEFile.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAowGAAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAiwG4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-20T05:16:39.499Z",
               "EditorCaption": ""
@@ -126,8 +126,7 @@
               "RelativeToolTip": "SatelliteTracker\\map.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-05-20T13:43:12.331Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-20T13:43:12.331Z"
             }
           ]
         }
