@@ -3,241 +3,253 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SatelliteTracker"
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="SattTrack"
-        Height="405" Width="800"
+        Width="1000"
+        Height="600"
+        MinWidth="800"
+        MinHeight="467"
         WindowStyle="None"
-        ResizeMode="CanResize"
-        AllowsTransparency="False"
-        Background="Transparent" MinWidth="800" MinHeight="467">
+        AllowsTransparency="True"
+        Background="Transparent">
 
-    <Grid Background="#1E1E1E">
+    <Border Background="#6B6B6B"
+            CornerRadius="15">
 
-        <!-- ROWS: TitleBar + Content + Bottom panel -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="36"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="140"/>
-        </Grid.RowDefinitions>
+        <Grid>
 
-        <!-- ================= TITLE BAR ================= -->
-        <Grid Grid.Row="0"
-              Background="#151515"
-              MouseLeftButtonDown="TitleBar_MouseDown" Margin="0,0,0,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="140"/>
+            </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+            <!-- TITLE BAR -->
+            <Border Grid.Row="0"
+                    Background="#2B2B2B"
+                    CornerRadius="15,15,0,0"
+                    Margin="10,10,10,0"
+                    MouseLeftButtonDown="TitleBar_MouseDown">
 
-            <TextBlock Text="SattTrack"
-                       Foreground="White"
-                       VerticalAlignment="Center"
-                       Margin="12,0,0,0"
-                       FontSize="14"/>
+                <Grid Margin="0,0,5,0" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
 
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <Button Content="―"
-                        Width="28"
-                        Background="Transparent"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Click="Minimize_Click"/>
+                    <TextBlock Text="SattTrack"
+                               VerticalAlignment="Center"
+                               Margin="15,0"
+                               Foreground="White"
+                               FontSize="14"
+                               FontWeight="Bold"/>
 
-                <Button Content="▢"
-                        Width="28"
-                        Background="Transparent"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Click="Maximize_Click"/>
+                    <!-- MINIMIZE -->
+                    <Border Grid.Column="1"
+                            Width="34"
+                            Height="20"
+                            Margin="0,0,6,0"
+                            Background="#E6E6E6"
+                            CornerRadius="8"
+                            VerticalAlignment="Center"
+                            MouseLeftButtonUp="Minimize_Click">
 
-                <Button Content="✕"
-                        Width="28"
-                        Background="#C42B1C"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Click="Close_Click"/>
-            </StackPanel>
-        </Grid>
+                        <Image Source="/res/window-minimize.png"
+                               Margin="8,2" MouseLeftButtonDown="Minimize_Click"/>
+                    </Border>
 
-        <!-- ================= MAIN CONTENT ================= -->
-        <Grid Margin="0,28,0,0" Grid.RowSpan="2">
+                    <!-- MAXIMIZE -->
+                    <Border Grid.Column="2"
+                            Width="34"
+                            Height="20"
+                            Margin="0,0,6,0"
+                            Background="#E6E6E6"
+                            CornerRadius="8"
+                            VerticalAlignment="Center"
+                            MouseLeftButtonUp="Maximize_Click">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="7*" />
-                <ColumnDefinition Width="29*"/>
-                <ColumnDefinition Width="260" />
-            </Grid.ColumnDefinitions>
+                        <Image Source="/res/expand-window.png"
+                               Margin="2,-4" MouseLeftButtonDown="Maximize_Click"/>
+                    </Border>
 
-            <!-- 🗺️ MAP -->
-            <Border Grid.Column="0"
-                    Margin="5"
-                    Background="#2A2A2A"
-                    CornerRadius="20"
-                    Grid.ColumnSpan="2">
+                    <!-- CLOSE -->
+                    <Border x:Name="CloseButton" Grid.Column="3"
+                            Width="34"
+                            Height="20"
+                            Background="#E6E6E6"
+                            CornerRadius="8"
+                            VerticalAlignment="Center"
+                            MouseLeftButtonUp="Close_Click" MouseEnter="Border_MouseEnter" MouseLeave="CloseButton_MouseLeave">
 
-                <Grid>
-                    <wv2:WebView2 x:Name="MapView"
-                                  Margin="5,5,5,10"/>
+                        <Image Source="/res/close.png"
+                               Margin="10,2" MouseLeftButtonDown="Close_Click"/>
+                    </Border>
+
                 </Grid>
             </Border>
 
-            <!-- 📋 RIGHT PANEL -->
-            <Grid Grid.Column="2" Margin="5">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Border x:Name="SattList" Background="#2A2A2A"
-                        CornerRadius="20"
-                        Margin="0,0,0,10">
-
-                    <DockPanel Margin="10">
-
-                        <TextBlock Text="СПИСОК СПУТНИКОВ"
-                                   Foreground="White"
-                                   FontSize="16"
-                                   Margin="5"
-                                   DockPanel.Dock="Top"/>
-
-                        <ListBox x:Name="TLElist_listBox"
-                                 ItemsSource="{Binding Satellites}"
-                                 Background="Transparent"
-                                 BorderThickness="0"
-                                 Foreground="White">
-
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Background="#3A3A3A"
-                                            Margin="5"
-                                            Padding="8"
-                                            CornerRadius="10">
-
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Name}"
-                                                       FontWeight="Bold"
-                                                       VerticalAlignment="Center"/>
-
-                                            <Rectangle Width="20"
-                                                       Height="20"
-                                                       Margin="10,0,0,0"
-                                                       Fill="{Binding TrackColor}"/>
-                                        </StackPanel>
-
-                                    </Border>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-
-                        </ListBox>
-                    </DockPanel>
-                </Border>
-
-                <!-- BUTTONS -->
-                <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
-
-                    <Button x:Name="Add"
-                            Content="ДОБАВИТЬ"
-                            Margin="0,5"
-                            Height="45"
-                            Background="#4CAF50"
-                            Foreground="White"
-                            FontWeight="Bold"
-                            Click="AddTLE_Button_Click"/>
-
-                    <Button x:Name="ChangeButton" Content="ИЗМЕНИТЬ"
-                            Margin="0,5"
-                            Height="45"
-                            Background="#2196F3"
-                            Foreground="White"
-                            FontWeight="Bold" Click="ChangeButton_Click"/>
-
-                    <Button x:Name="DeleteButton" Content="УДАЛИТЬ"
-                            Margin="0,5"
-                            Height="45"
-                            Background="#F44336"
-                            Foreground="White"
-                            FontWeight="Bold" Click="DeleteButton_Click"/>
-
-                </StackPanel>
-            </Grid>
-        </Grid>
-
-        <!-- ================= BOTTOM PANEL ================= -->
-        <Border Grid.Row="2"
-                Margin="5,0,5,5"
-                Background="#2A2A2A"
-                CornerRadius="20">
-
-            <Grid Margin="15,15,15,6">
+            <!-- MAIN CONTENT -->
+            <Grid Grid.Row="1"
+                  Margin="10">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="260"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                <!-- MAP -->
+                <Border Grid.Column="0"
+                        Margin="0,0,10,0"
+                        Background="#2B2B2B"
+                        CornerRadius="15">
 
-                <!-- Name -->
-                <TextBlock Text="Name"
-                           Foreground="White"/>
+                    <wv2:WebView2 x:Name="MapView"
+                                  Margin="10"/>
+                </Border>
 
-                <TextBox x:Name="TLEnameInput_textBox"
-                         Grid.Column="1"
-                         Margin="5"
-                         Text="{Binding NewSatelliteName}"
-                         Grid.ColumnSpan="2"/>
+                <!-- RIGHT PANEL -->
+                <Grid Grid.Column="1">
 
-                <!-- TLE 1 -->
-                <TextBlock Text="TLE 1"
-                           Grid.Row="1"
-                           Foreground="White"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <TextBox x:Name="TLE1input_textBox"
-                         Grid.Row="1"
-                         Grid.Column="1"
-                         Margin="5"
-                         Text="{Binding TLE1}"
-                         Grid.ColumnSpan="2"/>
+                    <!-- SATELLITE LIST -->
+                    <Border Background="#2B2B2B"
+                            CornerRadius="15"
+                            Margin="0,0,0,10">
 
-                <!-- TLE 2 -->
-                <TextBlock Text="TLE 2"
-                           Grid.Row="2"
-                           Foreground="White"/>
+                        <DockPanel Margin="10">
 
-                <TextBox x:Name="TLE2input_textBox"
-                         Grid.Row="2"
-                         Grid.Column="1"
-                         Margin="5"
-                         Grid.ColumnSpan="2"/>
+                            <TextBlock Text="СПИСОК СПУТНИКОВ"
+                                       Foreground="White"
+                                       FontSize="16"
+                                       Margin="5"
+                                       DockPanel.Dock="Top"/>
 
-                <!-- Color -->
-                <TextBlock Text="Track Color"
-                           Grid.Row="3"
-                           Foreground="White"/>
+                            <ListBox x:Name="TLElist_listBox"
+                                     ItemsSource="{Binding Satellites}"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Foreground="White">
 
-                <xctk:ColorPicker x:Name="MyColorPicker"
-                                  Grid.Row="3"
-                                  Grid.Column="1"
-                                  Margin="5"
-                                  SelectedColor="Gray"
-                                  ShowStandardColors="True"
-                                  ShowRecentColors="True"
-                                  Grid.ColumnSpan="2"/>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#3A3A3A"
+                                                Margin="5"
+                                                Padding="8"
+                                                CornerRadius="10">
+
+                                            <StackPanel Orientation="Horizontal">
+
+                                                <TextBlock Text="{Binding Name}"
+                                                           FontWeight="Bold"/>
+
+                                                <Rectangle Width="20"
+                                                           Height="20"
+                                                           Margin="10,0,0,0"
+                                                           Fill="{Binding TrackColor}"/>
+
+                                            </StackPanel>
+
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+
+                            </ListBox>
+
+                        </DockPanel>
+                    </Border>
+
+                    <!-- ACTION BUTTONS -->
+                    <StackPanel Grid.Row="1">
+
+                        <Border Height="36"
+                                Margin="0,4"
+                                Background="#58BF54"
+                                CornerRadius="12"
+                                MouseLeftButtonUp="AddTLE_Button_Click">
+
+                            <TextBlock Text="ДОБАВИТЬ"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       FontWeight="Bold"/>
+                        </Border>
+
+                        <Border Height="36"
+                                Margin="0,4"
+                                Background="#3B6FC3"
+                                CornerRadius="12"
+                                MouseLeftButtonUp="ChangeButton_Click">
+
+                            <TextBlock Text="ИЗМЕНИТЬ"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       FontWeight="Bold"/>
+                        </Border>
+
+                        <Border Height="36"
+                                Margin="0,4"
+                                Background="#C34646"
+                                CornerRadius="12"
+                                MouseLeftButtonUp="DeleteButton_Click">
+
+                            <TextBlock Text="УДАЛИТЬ"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       FontWeight="Bold"/>
+                        </Border>
+
+                    </StackPanel>
+
+                </Grid>
 
             </Grid>
-        </Border>
 
-    </Grid>
+            <!-- BOTTOM PANEL -->
+            <Border Grid.Row="2"
+                    Margin="10,0,10,10"
+                    Background="#2B2B2B"
+                    CornerRadius="15">
+
+                <Grid>
+                    <TextBlock Text="ИМЯ:" Foreground="White" FontWeight="Bold" Margin="10,10,734,93" MouseLeftButtonUp="DeleteButton_Click"/>
+                    <Border CornerRadius="7" Margin="133,10,134,104" Background="White">
+                        <TextBox x:Name="TLEnameInput_textBox" Margin="10,0,10,0" BorderThickness="0"></TextBox>
+                    </Border>
+                    <TextBlock Text="TLE1:" Foreground="White" FontWeight="Bold" Margin="10,31,734,72" MouseLeftButtonUp="DeleteButton_Click"/>
+                    <Border CornerRadius="7" Margin="133,31,134,83" Background="White">
+                        <TextBox x:Name="TLE1input_textBox" Margin="10,0,10,0" BorderThickness="0"></TextBox>
+                    </Border>
+                    <TextBlock Text="TLE2:" Foreground="White" FontWeight="Bold" Margin="10,52,734,51" MouseLeftButtonUp="DeleteButton_Click"/>
+                    <Border CornerRadius="7" Margin="133,52,134,62" Background="White">
+                        <TextBox x:Name="TLE2input_textBox" Margin="10,0,10,0" BorderThickness="0"></TextBox>
+                    </Border>
+                    <TextBlock Text="ЦВЕТ ОТСЛЕЖКИ:" Foreground="White" FontWeight="Bold" Margin="10,78,664,25" MouseLeftButtonUp="DeleteButton_Click"/>
+                    <Border CornerRadius="7" Margin="133,73,134,21" Background="White">
+                        <xctk:ColorPicker x:Name="MyColorPicker"
+                          Grid.Row="3"
+                          Grid.Column="1"
+                          Margin="5,0,5,0"
+                          SelectedColor="Gray"
+                          ShowStandardColors="True"
+                          ShowRecentColors="True"
+                          Grid.ColumnSpan="2"
+                          BorderThickness="0"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+        </Grid>
+
+    </Border>
 </Window>

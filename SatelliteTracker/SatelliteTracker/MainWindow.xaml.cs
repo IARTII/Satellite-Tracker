@@ -57,7 +57,7 @@ namespace SatelliteTracker
         {
             InitializeComponent();
 
-            WindowState = WindowState.Maximized;
+            //WindowState = WindowState.Maximized;
 
             Satellites = TLEFile.Read(destenation);
 
@@ -309,8 +309,8 @@ namespace SatelliteTracker
             // ждём загрузку JS
             await Task.Delay(1000);
 
-            WindowState =
-                WindowState.Maximized;
+            //WindowState =
+            //    WindowState.Maximized;
 
             Satellites = TLEFile.Read(destenation);
 
@@ -363,23 +363,6 @@ namespace SatelliteTracker
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
-        }
-
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void Maximize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState == WindowState.Maximized
-                ? WindowState.Normal
-                : WindowState.Maximized;
-        }
-
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
 
         private void ChangeButton_Click(object sender, RoutedEventArgs e)
@@ -445,6 +428,79 @@ namespace SatelliteTracker
             }
             Satellites = TLEFile.Read(destenation);
             MainWindow_Loaded(sender, e);
+        }
+
+        private void Close_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            CloseButton.Background = b;
+        }
+
+        private void CloseButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(230, 230, 230));
+            CloseButton.Background = b;
+        }
+
+        private double _oldLeft;
+        private double _oldTop;
+        private double _oldWidth;
+        private double _oldHeight;
+        private bool _isMaximized = false;
+        private void ToggleWindowSize()
+        {
+            if (!_isMaximized)
+            {
+                _oldLeft = Left;
+                _oldTop = Top;
+                _oldWidth = Width;
+                _oldHeight = Height;
+
+                Left = SystemParameters.WorkArea.Left;
+                Top = SystemParameters.WorkArea.Top;
+                Width = SystemParameters.WorkArea.Width;
+                Height = SystemParameters.WorkArea.Height;
+
+                _isMaximized = true;
+            }
+            else
+            {
+                Left = _oldLeft;
+                Top = _oldTop;
+                Width = _oldWidth;
+                Height = _oldHeight;
+
+                _isMaximized = false;
+            }
+        }
+
+        private void Maximize_Click(object sender, MouseButtonEventArgs e)
+        {
+            ToggleWindowSize();
+        }
+
+        private void Minimize_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Source != sender)
+                return;
+
+            if (e.ClickCount == 2)
+            {
+                ToggleWindowSize();
+                return;
+            }
+
+            DragMove();
         }
     }
 }
