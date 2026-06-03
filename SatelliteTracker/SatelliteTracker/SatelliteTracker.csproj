@@ -13,6 +13,7 @@
     <None Remove="res\close.png" />
     <None Remove="res\expand-window.png" />
     <None Remove="res\window-minimize.png" />
+    <None Remove="satelite.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,7 @@
   <ItemGroup>
     <Resource Include="res\close.png" />
     <Resource Include="res\expand-window.png" />
+    <Resource Include="satelite.png" />
   </ItemGroup>
 
 </Project>

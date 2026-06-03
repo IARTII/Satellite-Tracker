@@ -502,5 +502,65 @@ namespace SatelliteTracker
 
             DragMove();
         }
+
+        private void Border_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(107, 107, 107));
+            MaximizeButton.Background = b;
+        }
+
+        private void MaximizeButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(230, 230, 230));
+            MaximizeButton.Background = b;
+        }
+
+        private void Border_MouseEnter_2(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(107, 107, 107));
+            MinimezedButton.Background = b;
+        }
+
+        private void MinimezedButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(230, 230, 230));
+            MinimezedButton.Background = b;
+        }
+
+        private void Border_MouseEnter_3(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(63, 140, 60));
+            AddButton.Background = b;
+        }
+
+        private void AddButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(88, 191, 84));
+            AddButton.Background = b;
+        }
+
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(59, 111, 195));
+            ChangeButton.Background = b;
+        }
+
+        private void ChangeButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(38, 72, 128));
+            ChangeButton.Background = b;
+        }
+
+        private void DeleteButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(195, 70, 70));
+            DeleteButton.Background = b;
+        }
+
+        private void DeleteButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var b = new SolidColorBrush(Color.FromRgb(150, 53, 53));
+            DeleteButton.Background = b;
+        }
     }
 }
